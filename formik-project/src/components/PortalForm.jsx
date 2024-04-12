@@ -39,7 +39,7 @@ const PortalForm = () => {
         return (
           <div className={dark ? "dark" : ""}>
             <Form className="w-screen font-sans  h-screen flex relative bg-neutral-200 dark:bg-neutral-800 text-white justify-center items-start">
-              <div className=" flex justify-center items-start mt-16  fixed   p-10 flex-col bg-gray-700 w-1/3 h-auto rounded-lg max-sm:w-full max-md:w-10/12 max-lg:w-1/2 max-xl:w-1/2 max-2xl:w-1/3">
+              <div className=" flex justify-center items-start mt-16     p-10 flex-col bg-gray-700 w-1/3 h-auto rounded-lg max-sm:w-full max-md:w-10/12 max-lg:w-1/2 max-xl:w-1/2 max-2xl:w-1/3">
                 <div className="text-2xl w-full text-center mb-2">
                   Portal Form
                 </div>
@@ -48,17 +48,31 @@ const PortalForm = () => {
                   name="userName"
                   placeholder="Enter Your Username..."
                 />
+                <p className="text-red-400 pl-1 mb-1 ">
+                  <ErrorMessage name="userName" />
+                  {values.errors.userName && values.touched.userName ? "*" : ""}
+                </p>
                 <CustomSelect label="City" name="city" type="select">
                   <option value="">Please Select Your City</option>
                   <option value="istanbul">Istanbul</option>
                   <option value="newyork">New York</option>
                   <option value="berlin">Berlin</option>
-                </CustomSelect>
+                </CustomSelect>{" "}
+                <p className="text-red-400 pl-1 mb-1 ">
+                  <ErrorMessage name="city" />
+                  {values.errors.city && values.touched.city ? "*" : ""}
+                </p>
                 <CustomCheckBox
                   value={values.isAccepted}
                   label="Terms and Conditions"
                   name="isAccepted"
                 />
+                <p className="text-red-400 pl-1 mb-1 ">
+                  <ErrorMessage name="isAccepted" />
+                  {values.errors.isAccepted && values.touched.isAccepted
+                    ? "*"
+                    : ""}
+                </p>
                 <button
                   type="submit"
                   disabled={values.isSubmitting}
@@ -66,17 +80,6 @@ const PortalForm = () => {
                 >
                   {values.isSubmitting ? "Loading..." : "Submit"}
                 </button>
-                <ul className=" mt-3 text-red-400">
-                  <li>
-                    <ErrorMessage name="userName" />
-                  </li>
-                  <li>
-                    <ErrorMessage name="city" />
-                  </li>
-                  <li>
-                    <ErrorMessage name="isAccepted" />
-                  </li>
-                </ul>
               </div>
             </Form>
             <button
