@@ -1,4 +1,4 @@
-import { ErrorMessage, useField } from "formik";
+import { useField } from "formik";
 import PropTypes from "prop-types";
 
 function CustomSelect({ label, ...props }) {
@@ -7,13 +7,12 @@ function CustomSelect({ label, ...props }) {
   const errorStyle = meta.touched && meta.error ? "border-red-500" : "";
   return (
     <>
-      <label> {label} </label>
+      <label className="ps-1"> {label} </label>
       <select
-        className={`text-black border-[3px] outline-none ${errorStyle}`}
+        className={`text-black border-[3px] w-full ps-2 py-1 rounded-md my-2 outline-none ${errorStyle}`}
         {...field}
         {...props}
       />
-      <ErrorMessage name={field.name} />
     </>
   );
 }

@@ -7,7 +7,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<MainForm />} />
-        <Route path="/e" element={<PortalForm />} />
+        <Route path="/portal" element={<PortalForm />} />
       </Routes>
     </>
   );

@@ -1,7 +1,9 @@
 import { useFormik } from "formik";
 import ValidationSchema from "../schemas/index.jsx";
+import { useNavigate } from "react-router-dom";
 
 function MainForm() {
+  const navigate = useNavigate();
   const { handleSubmit, isSubmitting, values, touched, errors, handleChange } =
     useFormik({
       initialValues: { name: "", lastName: "", password: "", email: "" },
@@ -80,19 +82,18 @@ function MainForm() {
         >
           {isSubmitting ? "Submitting" : "Submit"}
         </button>
-        <ul className=" text-start w-full mt-4 flex flex-col gap-1 text-lg">
-          <li className="text-red-500 ">
-            {touched.name && errors.name ? errors.name : ""}
-          </li>
-          <li className="text-red-500 ">
-            {touched.lastName && errors.lastName ? errors.lastName : ""}
-          </li>
-          <li className="text-red-500 ">
-            {touched.email && errors.email ? errors.email : ""}
-          </li>
-          <li className="text-red-500 ">
-            {touched.password && errors.password ? errors.password : ""}
-          </li>
+        <button
+          disabled={isSubmitting}
+          onClick={() => navigate("/portal")}
+          className="w-full hover:bg-blue-600 bg- bg-blue-500 text-white rounded-lg p-2 mt-10"
+        >
+          Go to the Portal Form Page
+        </button>
+        <ul className=" text-red-400 text-start w-full mt-4 flex flex-col gap-1 text-lg">
+          <li>{touched.name && errors.name ? errors.name : ""}</li>
+          <li>{touched.lastName && errors.lastName ? errors.lastName : ""}</li>
+          <li>{touched.email && errors.email ? errors.email : ""}</li>
+          <li>{touched.password && errors.password ? errors.password : ""}</li>
         </ul>
       </div>
     </form>
